@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Button,
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -31,7 +32,30 @@ export default function App() {
     <View style={styles.container}>
       <Text style={{ fontSize: 16 }}>Kei is learning react native</Text>
       {/* marginVertical: marginTop and marginBottom */}
-      <ScrollView>
+      <FlatList
+        keyExtractor={(item) => item.id + ""}
+        data={students}
+        // return an object containing the index and an object item containing the data
+        renderItem={(data) => {
+          // console.log("data: ", data);
+          // so to get the daat, we need use: data.item.key
+          return (
+            <View
+              style={{
+                padding: 15,
+                backgroundColor: "pink",
+                marginBottom: 30,
+                marginHorizontal: 30,
+              }}
+            >
+              <Text>
+                {data.item.id}. {data.item.name} - {data.item.age}
+              </Text>
+            </View>
+          );
+        }}
+      />
+      {/* <ScrollView>
         {students.map((student) => {
           return (
             <View
@@ -44,7 +68,7 @@ export default function App() {
             </View>
           );
         })}
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 }
