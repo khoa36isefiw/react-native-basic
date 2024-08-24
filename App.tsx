@@ -1,59 +1,50 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 export default function App() {
   // return jsx
   // hooks in react native, and use typescript
-  const [count, setCount] = useState<number>(0);
-  const [name, setName] = useState<string>("");
-  const [age, setAge] = useState<number>(0);
+
+  // array
+  const [students, setStudents] = useState([
+    { id: 1, name: "Kei1", age: 18 },
+    { id: 2, name: "Kei2", age: 19 },
+    { id: 3, name: "Kei3", age: 20 },
+    { id: 4, name: "Kei4", age: 21 },
+    { id: 5, name: "Kei5", age: 22 },
+    { id: 6, name: "Kei6", age: 23 },
+    { id: 7, name: "Kei7", age: 24 },
+    { id: 8, name: "Kei8", age: 18 },
+    { id: 9, name: "Kei9", age: 18 },
+    { id: 10, name: "Kei10", age: 18 },
+    { id: 11, name: "Kei11", age: 18 },
+  ]);
+
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 16 }}>Kei is learning react native</Text>
       {/* marginVertical: marginTop and marginBottom */}
-      <Text style={{ fontSize: 16, marginVertical: 8 }}>Count = {count}</Text>
-      <View>
-        <Button
-          color="brown"
-          title="Set Name"
-          onPress={() => setCount((prev) => prev + 1)}
-        />
-      </View>
-      {/* TextInput in react native */}
-      <View>
-        <Text>Name: {name}</Text>
-        <TextInput
-          // will show the current text is typing
-          onChangeText={(value) => setName(value)}
-          multiline // like textarea
-          autoCapitalize="words" // capitalize
-          style={{
-            borderWidth: 1,
-            borderColor: "brown",
-            width: 200,
-            padding: 1,
-          }}
-        />
-      </View>
-
-      {/* Age, check number for this TextInput */}
-      <View style={{ marginTop: 8 }}>
-        <Text>Age: {age}</Text>
-        <TextInput
-          // get value
-          // use: +value --> will convert string to number
-          onChangeText={(value) => setAge(+value)}
-          keyboardType="numeric" // only show number for typing
-          maxLength={2} // only 2 numbers are allowed
-          style={{
-            borderWidth: 1,
-            borderColor: "orange",
-            width: 200,
-            padding: 2,
-          }}
-          placeholder="Enter your age..."
-        />
-      </View>
+      <ScrollView>
+        {students.map((student) => {
+          return (
+            <View
+              style={{ padding: 15, backgroundColor: "pink", marginBottom: 30 }}
+              key={student.id}
+            >
+              <Text>
+                {student.id}. {student.name}
+              </Text>
+            </View>
+          );
+        })}
+      </ScrollView>
     </View>
   );
 }
@@ -65,7 +56,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    paddingTop: 50,
+    paddingHorizontal: 20,
+    // alignItems: "center",
+    // justifyContent: "center",
   },
 });
