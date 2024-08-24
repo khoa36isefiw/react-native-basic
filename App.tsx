@@ -1,31 +1,22 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
   // return jsx
+  // hooks in react native, and use typescript
+  const [count, setCount] = useState<number>(0);
   return (
-    // view ==== div
-    // text === text
     <View style={styles.container}>
-      {/* css view không ảnh hưởng đến các thẻ con của nó */}
+      <Text style={{ fontSize: 16 }}>Kei is learning react native</Text>
+      {/* marginVertical: marginTop and marginBottom */}
+      <Text style={{ fontSize: 16, marginVertical: 8 }}>Count = {count}</Text>
       <View>
-        <Text style={styles.header}>View likes DIV</Text>
-        <Text style={styles.parents}>
-          Parent
-          <Text style={styles.child}>child</Text>
-        </Text>
+        <Button
+          color="brown"
+          title="Set Name"
+          onPress={() => setCount((prev) => prev + 1)}
+        />
       </View>
-      <Text
-        style={{
-          color: "green",
-          borderColor: "pink",
-          borderWidth: 1,
-          padding: 9,
-        }}
-      >
-        Hello world in React Native!
-      </Text>
-      <Text style={{ color: "blue", fontSize: 32 }}>FontSize!</Text>
-      <Text style={styles.styleSheet}>Use StyleSheet</Text>
     </View>
   );
 }
@@ -39,20 +30,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
-  styleSheet: {
-    color: "yellow",
-
-    padding: 2,
-    borderWidth: 9,
-    borderColor: "yellowgreen",
-  },
-  header: {
-    fontWeight: "600",
-    color: "pink",
-  },
-  parents: { display: "flex" },
-  child: {
-    color: "orange",
   },
 });
