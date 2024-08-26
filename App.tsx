@@ -9,66 +9,61 @@ import {
   View,
 } from "react-native";
 
+// define kiểu đối tượng
+interface ITodo {
+  id: number;
+  name: string;
+}
+
 export default function App() {
   // return jsx
   // hooks in react native, and use typescript
+  // input todo
+  const [todo, setTodo] = useState("");
+  const [listTodo, setListTodo] = useState<ITodo[]>([]);
 
-  // array
-  const [students, setStudents] = useState([
-    { id: 1, name: "Kei1", age: 18 },
-    { id: 2, name: "Kei2", age: 19 },
-    { id: 3, name: "Kei3", age: 20 },
-    { id: 4, name: "Kei4", age: 21 },
-    { id: 5, name: "Kei5", age: 22 },
-    { id: 6, name: "Kei6", age: 23 },
-    { id: 7, name: "Kei7", age: 24 },
-    { id: 8, name: "Kei8", age: 18 },
-    { id: 9, name: "Kei9", age: 18 },
-    { id: 10, name: "Kei10", age: 18 },
-    { id: 11, name: "Kei11", age: 18 },
-  ]);
+  // random number
+  function randomInteger(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  const handleAddTodo = () => {
+    if (!todo) {
+      // if todo is empty
+      return;
+    }
+    setListTodo([...listTodo, { id: randomInteger(1, 2000), name: todo }]);
+    setTodo("");
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 16 }}>Kei is learning react native</Text>
+      {/* header */}
+      <Text style={styles.header}>Todo App</Text>
       {/* marginVertical: marginTop and marginBottom */}
-      <FlatList
-        keyExtractor={(item) => item.id + ""}
-        data={students}
-        // return an object containing the index and an object item containing the data
-        renderItem={(data) => {
-          // console.log("data: ", data);
-          // so to get the daat, we need use: data.item.key
-          return (
-            <View
-              style={{
-                padding: 15,
-                backgroundColor: "pink",
-                marginBottom: 30,
-                marginHorizontal: 30,
-              }}
-            >
-              <Text>
-                {data.item.id}. {data.item.name} - {data.item.age}
-              </Text>
-            </View>
-          );
-        }}
-      />
-      {/* <ScrollView>
-        {students.map((student) => {
-          return (
-            <View
-              style={{ padding: 15, backgroundColor: "pink", marginBottom: 30 }}
-              key={student.id}
-            >
-              <Text>
-                {student.id}. {student.name}
-              </Text>
-            </View>
-          );
-        })}
-      </ScrollView> */}
+      {/* form */}
+      <View>
+        <TextInput
+          value={todo}
+          style={styles.todoInput}
+          onChangeText={(value) => setTodo(value)}
+        />
+        <Button title="Add todo" onPress={handleAddTodo} />
+      </View>
+
+      {/* list todo */}
+      <View>
+        {/* <Text>list todo: {todo}</Text> */}
+        <FlatList
+          data={listTodo}
+          renderItem={(data) => {
+            return <Text style={styles.todoItem}>{data.item.name}</Text>;
+          }}
+          keyExtractor={(item) => item.id + ""}
+        />
+
+        {/* <Text>{JSON.stringify(listTodo)}</Text> */}
+      </View>
     </View>
   );
 }
@@ -77,12 +72,31 @@ export default function App() {
 
 const styles = StyleSheet.create({
   // css in js
+  header: {
+    fontSize: 24,
+    paddingHorizontal: 20,
+    backgroundColor: "yellow",
+    textAlign: "center",
+  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
     paddingTop: 50,
-    paddingHorizontal: 20,
+
     // alignItems: "center",
     // justifyContent: "center",
+  },
+  todoInput: {
+    borderWidth: 1,
+    borderColor: "green",
+    padding: 5,
+    margin: 15,
+  },
+  todoItem: {
+    borderWidth: 1,
+    borderColor: "black",
+    padding: 10,
+    marginVertical: 20,
+    marginHorizontal: 40,
   },
 });
