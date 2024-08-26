@@ -2,10 +2,12 @@ import { useState } from "react";
 import {
   Button,
   FlatList,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 
@@ -36,6 +38,15 @@ export default function App() {
     setTodo("");
   };
 
+  const deleteTodo = (id: number) => {
+    // lọc ra những todo có id khác với id truyền vào
+    // giữ lại những todo có id khác với id truyền vào
+    const newTodo = listTodo.filter((item) => item.id !== id);
+
+    // update list to
+    setListTodo(newTodo);
+  };
+
   return (
     <View style={styles.container}>
       {/* header */}
@@ -57,7 +68,14 @@ export default function App() {
         <FlatList
           data={listTodo}
           renderItem={(data) => {
-            return <Text style={styles.todoItem}>{data.item.name}</Text>;
+            return (
+              <Pressable
+                onPress={() => deleteTodo(data.item.id)}
+                style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
+              >
+                <Text style={styles.todoItem}>{data.item.name}</Text>
+              </Pressable>
+            );
           }}
           keyExtractor={(item) => item.id + ""}
         />
