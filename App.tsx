@@ -13,6 +13,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import FlexBox from "./components/flex.box";
 
 // define kiểu đối tượng
 interface ITodo {
@@ -66,43 +67,9 @@ export default function App() {
 
   return (
     // hide keyboard if click outside the textinput
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={styles.container}>
-        {/* header */}
-        <Text style={styles.header}>Todo App</Text>
-        {/* marginVertical: marginTop and marginBottom */}
-        {/* form */}
-        <View>
-          <TextInput
-            value={todo}
-            style={styles.todoInput}
-            onChangeText={(value) => setTodo(value)}
-          />
-          <Button title="Add todo" onPress={handleAddTodo} />
-        </View>
-
-        {/* list todo */}
-        <View>
-          {/* <Text>list todo: {todo}</Text> */}
-          <FlatList
-            data={listTodo}
-            renderItem={(data) => {
-              return (
-                <Pressable
-                  onPress={() => deleteTodo(data.item.id)}
-                  style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
-                >
-                  <Text style={styles.todoItem}>{data.item.name}</Text>
-                </Pressable>
-              );
-            }}
-            keyExtractor={(item) => item.id + ""}
-          />
-
-          {/* <Text>{JSON.stringify(listTodo)}</Text> */}
-        </View>
-      </View>
-    </TouchableWithoutFeedback>
+    <View>
+      <FlexBox />
+    </View>
   );
 }
 
