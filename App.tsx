@@ -5,12 +5,13 @@ import DetailScreen from "./components/reviews/detail";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { OPENSANS_REGULAR } from "./utils/const";
 
 SplashScreen.preventAutoHideAsync(); // waiting for loading
 
 const App = () => {
   const [loaded, error] = useFonts({
-    "OpenSans-Regular": require("./assets/fonts/OpenSans-Regular.ttf"),
+    [OPENSANS_REGULAR]: require("./assets/fonts/OpenSans-Regular.ttf"),
   });
 
   useEffect(() => {
