@@ -12,7 +12,7 @@ function AboutScreen() {
   return (
     <View>
       <Text style={{ color: "yellowgreen", fontWeight: "bold", fontSize: 24 }}>
-        Gộp CSS trong react native thông qua mảng []
+        About App with Drawer
       </Text>
       <Text style={[styles.about, globalStyles.globalFont]}>About Screen</Text>
     </View>
