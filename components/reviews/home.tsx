@@ -1,10 +1,12 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Button, Text, View } from "react-native";
 
 function HomeScreen() {
   return (
     <View>
-      <Text>Home Screen</Text>
+      <Text>Kei Home Screen</Text>
+      {/* navigate to detail page */}
+      <Button title="View Detail" onPress={() => alert("me!")} />
     </View>
   );
 }

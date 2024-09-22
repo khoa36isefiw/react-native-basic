@@ -7,6 +7,9 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { OPENSANS_REGULAR } from "./utils/const";
 
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 SplashScreen.preventAutoHideAsync(); // waiting for loading
 
 const App = () => {
@@ -24,16 +27,20 @@ const App = () => {
   if (!loaded && !error) {
     return null;
   }
+
+  const Stack = createNativeStackNavigator();
+
   return (
-    <View>
-      <Text style={{ paddingTop: 50 }}>Hello world</Text>
-      <HomeScreen />
-      <DetailScreen />
-      <View>
-        <Text>Detail Screen Google</Text>
-      </View>
-      <AboutScreen />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="home"
+          component={HomeScreen}
+          options={{ title: "Overview" }}
+        />
+        <Stack.Screen name="Details" component={DetailScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
