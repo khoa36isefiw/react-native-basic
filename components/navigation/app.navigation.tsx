@@ -1,5 +1,3 @@
-import { Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // Only import react-native-gesture-handler on native platforms
 import "react-native-gesture-handler";
@@ -7,20 +5,23 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import HomeScreen from "../reviews/home";
 import AboutScreen from "../reviews/about";
 import DetailScreen from "../reviews/detail";
+import AppHeader from "./app.header";
 
 const AppNavigation = () => {
   const Drawer = createDrawerNavigator();
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator
+    // screenOptions={{ headerShown: false }} // off header of stack navigator
+    >
       <Drawer.Screen
         name="home2"
         component={HomeLayout}
-        options={{ title: "Trang chủ" }}
+        options={{ title: "Home 2" }}
       />
       <Drawer.Screen
         name="about"
         component={AboutScreen}
-        options={{ title: "Thông tin" }}
+        options={{ header: () => <AppHeader /> }}
       />
     </Drawer.Navigator>
   );
@@ -31,11 +32,11 @@ export default AppNavigation;
 const HomeLayout = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="home">
       <Stack.Screen
         name="home"
         component={HomeScreen}
-        options={{ title: "Overview" }}
+        options={{ header: () => <></> }}
       />
       <Stack.Screen
         name="review-detail"

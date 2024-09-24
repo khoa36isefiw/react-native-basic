@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import AppHeader from "../navigation/app.header";
 
 // dinh nghia 1 review co gi?
 // what is the defination of review
@@ -34,6 +35,7 @@ function HomeScreen(props: any) {
   return (
     <View>
       <Text style={{ fontSize: 24 }}>Review List:</Text>
+
       {/* navigate to detail page */}
       <FlatList
         data={reviews}
