@@ -7,6 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 // Only import react-native-gesture-handler on native platforms
 import "react-native-gesture-handler";
 import AppNavigation from "./components/navigation/app.navigation";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync(); // waiting for loading
 

@@ -19,11 +19,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#ccc",
-    paddingTop: 40,
+    // paddingTop: 40,
   },
   headerText: {
-    marginLeft: 0,
-    width: "100%",
+    flex: 1,
     textAlign: "center",
     fontSize: 24,
     fontWeight: 600,

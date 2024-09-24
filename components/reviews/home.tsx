@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import AppHeader from "../navigation/app.header";
 
 // dinh nghia 1 review co gi?
 // what is the defination of review

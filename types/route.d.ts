@@ -5,3 +5,5 @@ type RootStackParamList = {
     "review-detail":{id: number; title:string; star:number} | undefined, // undefined is not used
     // Feed: {sort: 'latest' | 'top' } | undefined;
 }
+
+declare module "*.png"
